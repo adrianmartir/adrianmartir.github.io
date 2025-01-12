@@ -18,34 +18,34 @@ The aim of this article is to give a high level overview of the approaches that 
 
 ### Accurate performance estimates are hard
 
-If you have ever tried to seriously make money based on model predictions, you will know, that there are nasty surprises. There will be a huge magnet above your strategy's performance estimate, that will pull your estimate up, without actually pulling the performance up. So be sceptical of your performance metrics.
+If you have ever tried to seriously make money based on model predictions, you will know, that there are nasty surprises. There will be a huge magnet above your strategy's performance estimate, that will pull your estimate up, without actually pulling the performance up. So be skeptical of your performance metrics.
 
 Here is a noncomprehensive list of things that could widen the gap between estimated and actual performance:
 * fees(trading, deposit, withdrawal)
 * server downtimes
 * your infrastructure failing
-* regime changes(structural changes in your time series, eg. because of a real life event)
+* regime changes(structural changes in your time series, e.g. because of a real life event)
 * [slippage](https://www.investopedia.com/terms/s/slippage.asp)
-* weird bugs(While working on this project, I used a library that had a bug in it and because of it I thought I had build an insanely good model and I didn't notice until much later - a lot of time wasted)
-* failture to detect overfitting
+* weird bugs(While working on this project, I used a library that had a bug in it and because of it I thought I had built an insanely good model and I didn't notice until much later - a lot of time wasted)
+* failure to detect overfitting
 * [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias)
 
 ### Failing fast and often
 
-One of the most powerfull approaches to learning anything, is trial and error. So why not try as much as possible in the smallest amount of time? If you come up with a complex solution to a problem, to which you haven't even tried the simple solution, you might spend a lot of time implementing something complex, but in the end, if it doesn't work(and it won't work), you will have wasted a lot of time, because you were missing some key insights into your problem. If you would have tried the simpler approach first, you would have gained those insights much faster and with that you would have been able to find the correct solution much faster.
+One of the most powerful approaches to learning anything, is trial and error. So why not try as much as possible in the smallest amount of time? If you come up with a complex solution to a problem, to which you haven't even tried the simple solution, you might spend a lot of time implementing something complex, but in the end, if it doesn't work(and it won't work), you will have wasted a lot of time, because you were missing some key insights into your problem. If you would have tried the simpler approach first, you would have gained those insights much faster and with that you would have been able to find the correct solution much faster.
 
 A consequence of the above paragraph is that you should not aim for perfect from the start, you should aim for something basic instead. Although the above might sound obvious, I hate failing at doing something and this causes me to aim for something perfect and with that I fail miserably *and* waste a lot of time.
 
 ### Financial time series are not nice at all
 
-Financial time series data is inherently *very noisy* and thus we can't expect our models to explain large parts of the price movements. The goal here is to have an edge by just having a model that is 'good enough' to make profit in the long run. The question is: *How good exactly does our model have to be?* and *Will be able to archieve that level of performance?*. Because of the noise, we will have to restrict ourself to simple models, because they can deal much better with it(it's very hard to overfit a linear regression). One of my aims is to be able to somehow apply more complex models effectively, since it is much more fun.
+Financial time series data is inherently *very noisy* and thus we can't expect our models to explain large parts of the price movements. The goal here is to have an edge by just having a model that is 'good enough' to make profit in the long run. The question is: *How good exactly does our model have to be?* and *Will be able to achieve that level of performance?*. Because of the noise, we will have to restrict ourselves to simple models, because they can deal much better with it(it's very hard to overfit a linear regression). One of my aims is to be able to somehow apply more complex models effectively, since it is much more fun.
 
 
 ## Tooling
 
 ### Good old jupyter notebooks
 
-These are excellent for analyzing and plotting data like model and strategy performance metrics. My policy for jupyter notebooks is to keep them as short and concise as possible, because if I mess up some variables or if I open the notebook on a different day I will have to execute a whole bunch of cells and wait forever. For operations that are not instant and I intend to execute more often, I have a differnt solution:
+These are excellent for analyzing and plotting data like model and strategy performance metrics. My policy for jupyter notebooks is to keep them as short and concise as possible, because if I mess up some variables or if I open the notebook on a different day I will have to execute a whole bunch of cells and wait forever. For operations that are not instant and I intend to execute more often, I have a different solution:
 
 
 ### Luigi
@@ -130,9 +130,9 @@ If we view our prices as a distribution, it would change very drastically over t
 
 A way to get more reasonably distributed time series data would be for example by looking at $p(t) / p(t-1)$, because it shows whether the price increased or decreased independently of how high the price currently is. This gives you distribution, where the mean is almost always roughly 0, so at least the mean of the distribution stays the same. Now another common transformation to apply to time series data would be to take $log(p(t) / p(t-1)$)(*logarithmic returns*), because in this space the multiplication of two return values(ie. computing the total return) corresponds to addition, and addition is much nicer. For example an asset always growing at a constant rate would have a price graph of an exponential function, but if we take the logarithm, it is a linear function, which seems more reasonable.
 
-Now [using only one feature]({{ site.url }}{{ site.baseurl }}/notebooks/first_steps.html), the log returns of the last time period and slapping a logistic regression on top of that variable, you get a suprising **AUC of 0.538** and an accuracy of 52.2%.
+Now [using only one feature]({{ site.url }}{{ site.baseurl }}/notebooks/first_steps.html), the log returns of the last time period and slapping a logistic regression on top of that variable, you get a surprising **AUC of 0.538** and an accuracy of 52.2%.
 
-If you start [shifting features around]({{ site.url }}{{ site.baseurl }}/notebooks/first_steps.html)(including features from timesteps t-1,..,t-k at time t) and apply a logistic regressiong, you can increase your performance to an **AUC of 0.541**. Gradient boosting on the same features yields slightly better performance. The thing is: the training AUC is around 0.64, which shows that we are overfitting. The pattern hidden in this data(assuming it exists, lol) is to complex to bruteforce with a lightgbm(quite a complex model), since there is not enough data. To improve our model, we have a few options:
+If you start [shifting features around]({{ site.url }}{{ site.baseurl }}/notebooks/first_steps.html)(including features from timesteps t-1,..,t-k at time t) and apply a logistic regression, you can increase your performance to an **AUC of 0.541**. Gradient boosting on the same features yields slightly better performance. The thing is: the training AUC is around 0.64, which shows that we are overfitting. The pattern hidden in this data(assuming it exists, lol) is to complex to bruteforce with a lightgbm(quite a complex model), since there is not enough data. To improve our model, we have a few options:
 
 * Find smarter features
 * Actually get more data
@@ -158,12 +158,12 @@ When designing features from technical indicators, one has to be aware of the re
 
 A [simple logistic regression]({{ site.url }}{{ site.baseurl }}/notebooks/logistic_technical.html) on the indicators featureset had an **AUC of 0.551** and accuracy of 53.7%. Another significant improvement. Note that here the logistic regression code and the feature generation code is `src/technical.py` and the linked notebook just analyzes the predictions that model does.
 
-Remember my comment on that magnet pulling your performance estimate up? Well it happened to me with the technical indicator featureset, but back when I was using the [*finta*](https://github.com/peerchemist/finta) technical indicator library. It hat a line of code that made an indicator use data from the future, which it shouldn't have access to. Thus the model I trained had *insane* performance(0.60AUC). I opened an [issue](https://github.com/peerchemist/finta/issues/25) on the finta repo and never touched that library again, out of fear that there are more bugs hiding. Now I use [this talib wrapper](https://github.com/mrjbq7/ta-lib).
+Remember my comment on that magnet pulling your performance estimate up? Well it happened to me with the technical indicator featureset, but back when I was using the [*finta*](https://github.com/peerchemist/finta) technical indicator library. It had a line of code that made an indicator use data from the future, which it shouldn't have access to. Thus, the model I trained had *insane* performance(0.60AUC). I opened an [issue](https://github.com/peerchemist/finta/issues/25) on the finta repo and never touched that library again, out of fear that there are more bugs hiding. Now I use [this talib wrapper](https://github.com/mrjbq7/ta-lib).
 
 
 ## A short note on fat tails
 
-For completeness sake, [here]({{ site.url }}{{ site.baseurl }}/notebooks/fat_tails.html) is my fat tails notebook, that ilustrates how predictions on a small amount of timesteps with large price differences can have a huge impact on the strategies overall performance.
+For completeness sake, [here]({{ site.url }}{{ site.baseurl }}/notebooks/fat_tails.html) is my fat tails notebook, that illustrates how predictions on a small amount of timesteps with large price differences can have a huge impact on the strategies overall performance.
 
 
 ## Backtesting
@@ -173,10 +173,10 @@ Note that the returns are all in Bitcoin, so this may not reflect the actual ret
 
 ## Further reading
 
-* Introduction to quantitative trading: [quanstart](https://www.quantstart.com/articles/Beginners-Guide-to-Quantitative-Trading)
+* Introduction to quantitative trading: [quantstart](https://www.quantstart.com/articles/Beginners-Guide-to-Quantitative-Trading)
 * Some approaches people have tried: [hacker news](https://news.ycombinator.com/item?id=16922538)
 
 
-## Upcomming articles:
+## Upcoming articles:
 
 * Reframing the problem
