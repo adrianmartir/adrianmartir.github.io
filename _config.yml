@@ -21,9 +21,9 @@ baseurl: "/"  # the subpath of your site, e.g. /blog
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 author:
   name: Adrian Marti
-github_username: adrianmartir
-gitlab_username: adrianmarti
-# logo: /assets/icons/basically-basic-logo-light.svg
+# github_username: adrianmartir
+# gitlab_username: adrianmarti
+logo: /icons/aum-vector-round-trans_2 detailed.gif
 search: true
 search_full_content: true
 
@@ -43,8 +43,8 @@ feed:
   path: atom.xml
 
 # Pagination - https://jekyllrb.com/docs/pagination/
-paginate: 10
-paginate_path: /page:num/
+# paginate: 10
+# paginate_path: /page:num/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
