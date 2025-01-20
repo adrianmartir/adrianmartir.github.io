@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 lang: en-US
 title: Inner Silence
-email: adrianmarti06@gmail.com
+email: adrianmarti384@gmail.com
 description: "Playing with machine learning"
 baseurl: "/"  # the subpath of your site, e.g. /blog
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
@@ -39,6 +39,7 @@ plugins: # previously gems
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-email-protect
 feed:
   path: atom.xml
 
