@@ -14,7 +14,7 @@ mathjax: true
 The aim of this article is to give a high level overview of the approaches that I tried and how this project evolved, it is not hammering some numpy and pandas functions/methods into your head(if you need to know a function, google and the [source code](https://gitlab.com/adrianmarti/ml-experiments-on-cryptos) are your friends :)).
 
 
-## Philsophy
+## Philosophy
 
 ### Accurate performance estimates are hard
 
