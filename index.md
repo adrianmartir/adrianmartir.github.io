@@ -24,6 +24,6 @@ It is worth noting that most of the first half of yogani's main lessons is also 
 
 # Classes
 
-Write me an <a href="mailto:{{ site.email | encode_email }}" title="mailto">email</a> if you are interested learning meditation in Hamburg (Germany) or in Barcelona (Spain). We might start online, and if some people are interested we can organize a location.
+Write me an <a href="mailto:{{ site.email | encode_email }}" title="mailto">email</a> if you are interested learning meditation in Germany. We might start online, and if some people are interested we can organize a location.
 
 I would also love to get in touch with other AYP practitioners in those areas.
