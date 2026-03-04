@@ -1,0 +1,168 @@
+---
+layout: default
+title: Home
+---
+
+<!-- HEADER -->
+<header>
+  <div class="header-content">
+    <div class="title-group">
+      <h1>Adrian Marti</h1>
+      <p class="subtitle">Yoga, Atemübungen und Tiefe Meditation - online oder vor Ort in Kempten</p>
+    </div>
+    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo" class="logo">
+  </div>
+</header>
+
+<!-- METHODS -->
+<section>
+  <h2>Methoden</h2>
+  <div class="methods-grid">
+    <div class="method-card">
+      <h3>Körperstellungen</h3>
+      <p>Die Yoga Körperstellungen sind dazu konzipiert, die Physiologie des Körpers zu stärken.</p>
+    </div>
+    <div class="method-card">
+      <h3>Atemübungen</h3>
+      <p>Durch die Kontrolle des Atems kannst Du auch den Geist meistern. So kannst du unverhältnismäßige Gefühle regulieren.</p>
+    </div>
+    <div class="method-card">
+      <h3>Tiefe Meditation</h3>
+      <p>Wirst Du durch die Gesellschaft und Deine Erfahrungen komplett definiert? In der tiefen Meditation erkennst Du, dass das nicht so ist. Dadurch kannst Du ganz praktisch unhilfreiche Gedankenmuster auflösen.</p>
+    </div>
+    <div class="method-card">
+      <h3>Kurzvorträge und Q&A</h3>
+      <p>In Kurzvorträgen behandle ich praktische und theoretische Themen im Yoga. Ich gehe auf Fragen von individuellen Teilnehmern ein.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section>
+  <h2>Prinzipien</h2>
+  <div class="principles">
+    <div class="principle">
+      <h3>Erfahrung</h3>
+      <p>Worte und Theorien sind nur bedingt hilfreich - was zählt ist wie die Praxis Dich ändert.</p>
+    </div>
+    <div class="principle">
+      <h3>Eigenständigkeit</h3>
+      <p>Nimm eine Praxis für Zuhause mit. Keine Abhängikeiten von Autoritätspersonen werden gefördert.</p>
+    </div>
+    <div class="principle">
+      <h3>Effektivität</h3>
+      <p>Wir nutzen das effektive AYP Yoga System, das von kompetenten Menschen entwickelt wurde.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <h2>Angebot</h2>
+  <div class="services-list">
+    <div class="service">
+      <h3>Online Yoga & Meditation in der Gruppe (90 min)</h3>
+      <p class="price">20€</p>
+      <p>Onlinestunde zu Yoga, Atemübungen und Meditation. In einer kleinen Gruppe.</p>
+
+      <div class="service-cta">
+        <a href="https://forms.gle/8TXNW3GH7x1m6aYN6"
+          target="_blank"
+          rel="noopener noreferrer">
+          Kontakt
+        </a>
+      </div>
+    </div>
+    <div class="service">
+      <h3>Beratungsgespräch (60 min)</h3>
+      <p class="price">40€</p>
+      <p>Ich helfe Dir, Deine ganz persönliche Meditations und Yogapraxis aufzubauen und diese effektiv in Deinen Alltag zu integrieren.</p>
+
+      <div class="service-cta">
+        <a href="https://forms.gle/8TXNW3GH7x1m6aYN6"
+          target="_blank"
+          rel="noopener noreferrer">
+          Kontakt
+        </a>
+      </div>
+    </div>
+    <!-- <div class="service">
+      <h3>Service Three</h3>
+      <p class="price">XX€</p>
+      <p>Description of the service and what’s included.</p>
+    </div> -->
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section>
+  <h2>Veranstaltungen</h2>
+
+  <div class="events-grid">
+    
+    {% assign sorted_events = site.events | sort: "date" %}
+
+    {% for event in sorted_events %}
+      {% if event.date >= site.time %}
+        <div class="event-card">
+          <h3>{{ event.title }}</h3>
+
+          <div class="event-meta">
+            {{ event.date | date: "%d.%m.%Y" }}
+            {% if event.time_start %}
+              • {{ event.time_start | date: "%H:%M" }}
+            {% endif %}
+
+            {% if event.time_end %}
+              – {{ event.time_end | date: "%H:%M" }} Uhr
+            {% endif %}
+            {% if event.location %}
+              • {{ event.location }}
+            {% endif %}
+          </div>
+
+          <p>{{ event.content | markdownify }}</p>
+
+          {% if event.cta_link %}
+            <a
+              href="{{ event.cta_link }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kontakt
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>Über Mich</h2>
+  <div class="about">
+    <div>
+      <p>
+        2024 habe ich meine 200h Yogalehrerausbildung auf der thailändischen Insel Koh Tao abgeschlossen. Dort bin ich tief in die Meditation und in das Yoga eingestiegen. Ich habe gelernt, wie ich diese wunderbaren Methoden weitergeben kann.
+      </p>
+    </div>
+    <img src="{{ '/assets/images/profile.png' | relative_url }}" alt="Adrian Marti" class="about-photo">
+  </div>
+</section>
+<footer>
+  <div class="footer-content">
+    <p>
+      <a href="https://forms.gle/8TXNW3GH7x1m6aYN6">
+        Kontakt
+      </a>
+    </p>
+
+    <p>
+      Instagram:
+      <a href="https://instagram.com/adrianmarti384" target="_blank">
+        @adrianmarti384
+      </a>
+    </p>
+  </div>
+</footer>
